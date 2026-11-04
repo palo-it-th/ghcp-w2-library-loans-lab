@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Library Loans · Week 2 Lab</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main>
+  <span class="eyebrow">Workshop 2 / fictional library</span>
+  <h1>Library Loans</h1>
+  <p>ยืมหนังสือได้ แต่ไม่ต้องยืม prompt เพื่อนทุกครั้งครับ</p>
+  <p class="muted">หน้าจอคืนหนังสือสมมติ ไม่มีการจ่ายเงินจริง ไม่มี server ไม่มีฐานข้อมูล</p>
+  <div class="grid">
+    <section class="card">
+      <h2>คืนหนังสือ</h2>
+      <p>“วิธีเขียน instructions ให้เลิกพิมพ์ซ้ำ”</p>
+      <label for="days">คืนช้า (วัน)</label>
+      <input id="days" type="number" min="0" max="365" step="1" value="3">
+      <p class="muted">ค่าปรับวันละ 5.50 บาท จำนวนวันที่กรอกถือว่าคิดวันมาแล้ว</p>
+      <p id="error" class="fail" role="alert"></p>
+    </section>
+    <section class="card">
+      <h2>ใบเสร็จ</h2>
+      <div class="total" id="total" aria-live="polite">16.50 THB</div>
+      <button id="checkout">ออกใบเสร็จ</button>
+      <pre id="receipt" aria-live="polite">ไม่ต้องจ่ายจริงครับ เรามาเรียน Copilot</pre>
+    </section>
+  </div>
+  <nav aria-label="Lab resources">
+    <a href="tests.html">ดู tests</a>
+    <a href="README.md">เริ่ม workshop</a>
+  </nav>
+</main>
+<script src="src/money.js"></script>
+<script src="src/clock.js"></script>
+<script src="src/loans.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Library Loans · Tests</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main>
+  <span class="eyebrow">Same test files / browser and Node</span>
+  <h1>Library Loans tests</h1>
+  <p id="summary" role="status">Running tests...</p>
+  <ul id="results"></ul>
+  <p class="muted">New test file? Add its script below. Existing files are already connected.</p>
+  <nav><a href="index.html">Library desk</a></nav>
+</main>
+<script src="src/money.js"></script>
+<script src="src/clock.js"></script>
+<script src="src/loans.js"></script>
+<script src="api/status.js"></script>
+<script>
+  window.TestKit = {
+    Library: window.Library, results: [],
+    test(name, fn) {
+      try { fn(); this.results.push({ name, passed: true }); }
+      catch (error) { this.results.push({ name, passed: false, error: error.message }); }
+    },
+    assert: {
+      equal(actual, expected) {
+        if (!Object.is(actual, expected)) throw new Error('Expected ' + expected + '; received ' + actual);
+      },
+      deepEqual(actual, expected) {
+        if (JSON.stringify(actual) !== JSON.stringify(expected)) {
+          throw new Error('Expected ' + JSON.stringify(expected) + '; received ' + JSON.stringify(actual));
+        }
+      },
+      throws(fn, ErrorType) {
+        try { fn(); }
+        catch (error) {
+          if (error instanceof ErrorType) return;
+          throw error;
+        }
+        throw new Error('Expected ' + ErrorType.name + ' to be thrown');
+      },
+    },
+  };
+  window.TestKit.test = window.TestKit.test.bind(window.TestKit);
+  addEventListener('error', event => {
+    document.getElementById('summary').textContent = 'ERROR: ' + event.message;
+    document.getElementById('summary').className = 'fail';
+  });
+</script>
+<script src="tests/loans.test.js"></script>
+<script src="tests/money.test.js"></script>
+<script src="tests/status.test.js"></script>
+<script>
+  const results = window.TestKit.results;
+  for (const result of results) {
+    const li = document.createElement('li');
+    li.className = result.passed ? 'pass' : 'fail';
+    li.textContent = (result.passed ? 'PASS ' : 'FAIL ') + result.name +
+      (result.error ? ': ' + result.error : '');
+    document.getElementById('results').append(li);
+  }
+  const failed = results.filter(result => !result.passed).length;
+  const summary = document.getElementById('summary');
+  if (!summary.classList.contains('fail')) {
+    summary.textContent = results.length + ' tests / ' + (results.length - failed) + ' pass / ' + failed + ' fail';
+    summary.className = failed ? 'fail' : 'pass';
+  }
+</script>
+</body>
+</html>
