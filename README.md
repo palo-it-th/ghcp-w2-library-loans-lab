@@ -1,62 +1,63 @@
-# Library Loans · Workshop 2
+# Library Loans · แล็บสัปดาห์ที่ 2
 
-คุณเพิ่งเข้าทีมที่ดูแล **ระบบยืมคืนหนังสือของห้องสมุดสมมติ**
-งานวันนี้ไม่ใช่เขียนระบบใหม่ แต่เลิกพิมพ์คำขอและกติกาทีมซ้ำทุกครั้ง
+แล็บนี้ใช้ **Library Loans ระบบยืมคืนหนังสือสมมติ** เป็นตัวอย่าง
+เราจะฝึกเก็บ prompt ที่ใช้บ่อยและเขียนกติกาทีมไว้ใน repo
+เพื่อให้ Copilot อ่านไปใช้ได้ โดยไม่ต้องพิมพ์กำชับใหม่ทุกครั้ง
 
-**ยืมหนังสือได้ แต่ไม่ต้องยืม prompt เพื่อนทุกครั้งครับ**
+## ก่อนเริ่ม (2 นาที)
 
-## เริ่มใน 2 นาที
+1. เปิด repo ที่ผู้สอนเตรียมไว้ โดยเลือก **โฟลเดอร์แล็บนี้เป็น workspace** ใน VS Code
+   ไม่เปิดโฟลเดอร์คอร์สทั้งหมด เพื่อไม่ให้ instructions ของคอร์สปนเข้ามา
+2. เปิด `index.html` ใน browser ลองกรอกว่าคืนหนังสือช้า 3 วัน ยอดต้องเป็น **16.50 THB**
+   หน้านี้ใช้ทดลองเท่านั้น ไม่มีการชำระเงินจริง และไม่ต้องติดตั้ง server หรือ database
+3. เปิด `tests.html` ตรวจว่า test ผ่านครบ **18/18**
+   ถ้ามี Node 20 ขึ้นไป จะรัน `node --test tests/*.test.js` ใน terminal แทนก็ได้
+   ไม่ต้องรัน `npm install`
+4. เปิด Copilot Chat → New Chat → เลือก Session Target เป็น **Local**, โหมด **Agent**, model **Auto**
+   ใช้ตัวเลือกเดิมตลอดแล็บ และเปิด New Chat ใหม่ตามที่แต่ละข้อระบุ
+5. เปิด [แบบบันทึกผล](labs/worksheet.md) ไว้จดระหว่างทำ
 
-1. เปิด repo ที่ trainer ให้ แล้วเปิด **โฟลเดอร์ lab นี้โดยตรง** ใน VS Code
-   อย่าเปิด course แม่เป็น workspace เพราะ instructions ของ course อาจปนเข้ามา
-2. เปิด `index.html` ด้วย browser: คืนช้า 3 วัน ต้องได้ **16.50 THB**
-   เป็นหน้าจอสมมติ ไม่จ่ายเงินจริง ไม่มี server หรือ database ให้ติดตั้ง
-3. เปิด `tests.html`: ตอนเริ่มต้องเขียว **18/18**
-   มี Node 20+ ใช้ `node --test tests/*.test.js` ได้ด้วย ไม่ต้อง `npm install`
-4. Copilot Chat → New Chat → Session Target **Local** → Agent → Auto
-   ใช้ harness/model เดิมตลอด lab และ New Chat เมื่อการ์ดบอก
-5. เปิด [worksheet](labs/worksheet.md) สำหรับจดผล
+ถ้าไม่มีตัวเลือก Local หรือองค์กรปิดไว้ ให้สร้างไฟล์ในข้อ 2.2 แล้วจดว่า **ยังไม่ได้ทดลองเรียกใช้**
+เพราะยังไม่ได้ลองเรียกใช้จริง จากนั้นเลือก Copilot harness เพื่อทำข้อ 2.3–2.6 ต่อ
+ถ้าใช้ IntelliJ และยังไม่แน่ใจว่าทำตามขั้นตอนได้ครบ ให้ทำคู่กับผู้ใช้ VS Code
 
-ไม่มี Local / ถูก policy ปิด: lab 2.2 สร้างไฟล์แล้วจดว่า **not run**
-ไม่ใช่ผ่าน ใช้ Copilot harness ทำ labs 2.3–2.6 ต่อได้
-IntelliJ ที่ยังไม่ได้ซ้อม: จับคู่กับคนใช้ VS Code
+## แล็บทั้ง 7 ข้อ · 45 นาที
 
-## เจ็ด lab · 45 นาที
-
-| Lab | นาที | ผลลัพธ์ |
+| ข้อ | นาที | ผลลัพธ์ |
 |---|---:|---|
-| [2.1 Sort your list](labs/2.1-sort-your-list.md) | 5 | รู้ว่าอะไรควรเป็น prompt / rule / skill |
-| [2.2 Save the ask](labs/2.2-save-the-ask.md) | 7 | prompt file เดิมใช้กับสอง input |
-| [2.3 Write the repo rules](labs/2.3-repo-rules.md) | 8 | repo instructions สามข้อ พร้อมเหตุผล |
-| [2.4 Is it loaded?](labs/2.4-is-it-loaded.md) | 5 | หลักฐาน loaded / not loaded / restored |
-| [2.5 Path-scoped](labs/2.5-path-scoped.md) | 7 | test instructions ที่ใช้กับ `tests/**` |
-| [2.6 Measure it](labs/2.6-measure-it.md) | 11 | scorecard ของห้างานและการเทียบสองงานเดิม |
-| [2.7 Review reads the rules](labs/2.7-review-reads-the-rules.md) | 2 | trainer demo: review ของ PR ที่ใช้เงินผิดรูปแบบ |
+| [2.1 จัดกลุ่มประโยคที่ใช้บ่อย](labs/2.1-sort-your-list.md) | 5 | แยกว่าประโยคไหนควรเก็บเป็น prompt, instructions หรือ skill |
+| [2.2 เก็บคำขอไว้เรียกใช้ซ้ำ](labs/2.2-save-the-ask.md) | 7 | สร้าง prompt file แล้วเรียกใช้กับ 2 function |
+| [2.3 เขียนกติกากลางของ repo](labs/2.3-repo-rules.md) | 8 | เขียนกติกากลางของ repo 3 ข้อ พร้อมเหตุผล |
+| [2.4 ตรวจว่า Copilot ได้รับกฎหรือยัง](labs/2.4-is-it-loaded.md) | 5 | ตรวจว่า Copilot ได้รับ instructions หรือยัง |
+| [2.5 เขียนกติกาสำหรับบางไฟล์](labs/2.5-path-scoped.md) | 7 | เขียน instructions สำหรับไฟล์ใน `tests/**` |
+| [2.6 ลองเปิด–ปิดกฎแล้วเทียบผล](labs/2.6-measure-it.md) | 11 | บันทึกผล 5 งาน แล้วเทียบ 2 งานเดิมตอนเปิดและปิดกฎ |
+| [2.7 ดูผล review เทียบกับกติกาทีม](labs/2.7-review-reads-the-rules.md) | 2 | ดูผู้สอนสาธิต review ของ PR ที่คำนวณเงินผิดกติกาทีม |
 
-ทำตามลำดับ ข้อสุดท้าย trainer ทำให้ดู ติดเกินสองนาทีให้ยกมือ
-ไม่ต้อง debug ทั้งห้องสมุดครับ
+ทำตามลำดับได้เลย ข้อสุดท้ายผู้สอนจะทำให้ดู
+ถ้าติดอยู่ที่ขั้นตอนไหนเกิน 2 นาที ให้ยกมือเรียกผู้สอน ไม่ต้องนั่งแก้คนเดียว
 
-## แผนที่ repo
+## ไฟล์ที่ใช้ในแล็บ
 
-| Path | หน้าที่ |
+| ไฟล์ | หน้าที่ |
 |---|---|
 | `src/loans.js` | `calculateLateFee(daysLate)`, `buildFeeReceipt(daysLate, clock)`, `canRenew()`, `countChargeableDays()` |
-| `src/money.js` | `Money.satang(550).times(3)` ได้ Money ที่มี `value: 1650`; `.format()` แสดงบาท |
-| `src/clock.js` | `systemClock.now()` และ `fakeClock(iso).now()` คืน Date |
-| `api/status.js` | readiness function เล็กๆ ไม่ใช่ HTTP server |
-| `db/migrations/003_create_loans.sql` | migration สมมติที่ถือว่า apply แล้ว |
-| `tests/` | tests เดียวกันรันได้ทั้ง Node และ browser; ชื่อเดิมยังไม่ใช่ given_when_then |
-| `docs/team.md` | กติกาทีมสำหรับนำไปเขียน instructions |
-| `docs/tickets/` | งานอนาคตสำหรับ W3/W4 ไม่ต้องแก้ใน W2 |
-| `labs/` | การ์ด, starter list, sample tasks และ worksheet |
+| `src/money.js` | ตัวช่วยคำนวณเงิน เช่น `Money.satang(550).times(3)` ได้ 1,650 สตางค์ อ่านค่าผ่าน `.value` และแสดงเป็นบาทด้วย `.format()` |
+| `src/clock.js` | ตัวช่วยเรื่องเวลา ทั้ง `systemClock.now()` และ `fakeClock(iso).now()` คืนค่าเป็น Date |
+| `api/status.js` | function สำหรับเช็กสถานะระบบ ไม่มี HTTP server ให้รัน |
+| `db/migrations/003_create_loans.sql` | ในโจทย์ให้ถือว่า migration นี้ถูกนำไปใช้แล้ว |
+| `tests/` | test ชุดเดียวกันรันได้ทั้ง Node และ browser ชื่อ test เดิมยังไม่ใช้รูปแบบ given_when_then |
+| `docs/team.md` | กติกาทีมที่จะนำมาเขียนเป็น instructions |
+| `docs/tickets/` | โจทย์สำหรับ W3/W4 ยังไม่ต้องแก้ในสัปดาห์นี้ |
+| `labs/` | ขั้นตอนแต่ละแล็บ รายการประโยคตัวอย่าง โจทย์ทดลอง และแบบบันทึกผล |
 
-เริ่มต้น **ยังไม่มี** `.github/`, prompt file หรือ instructions file
-ผู้เรียนเป็นคนสร้างเอง อย่าให้ agent ทำทุก lab รวดเดียว
+ตอนเริ่ม **ยังไม่มี** โฟลเดอร์ `.github/`, prompt file หรือ instructions file
+เราจะค่อยๆ สร้างในแต่ละข้อ ไม่ต้องสั่งให้ Copilot ทำทั้งแล็บในครั้งเดียว
 
-Tests เขียวแปลว่า test ที่มีผ่าน ไม่ได้แปลว่าไม่มี bug
-สอง ticket เรื่อง weekend และ renewal ตั้งใจเก็บไว้สำหรับสัปดาห์ต่อไป
-วันนี้ไม่แก้ implementation ของสองเรื่องนั้น
+การที่ test ผ่านทั้งหมดไม่ได้แปลว่าโค้ดไม่มี bug
+โจทย์เรื่องวันหยุดและจำนวนครั้งที่ต่ออายุหนังสือเก็บไว้ใช้ในสัปดาห์ถัดไป
+วันนี้ยังไม่ต้องแก้โค้ดสองส่วนนี้
 
-**→ เริ่ม [Lab 2.1](labs/2.1-sort-your-list.md)**
+**→ เริ่ม [ข้อ 2.1](labs/2.1-sort-your-list.md)**
 
-ไม่มี homework ไม่ต้อง push ไม่ต้องเปิด PR เอง เก็บไฟล์กับ worksheet ไว้ต่อ W3/W4
+แล็บนี้ไม่ต้อง push หรือเปิด PR เอง และไม่มีการบ้าน
+เก็บไฟล์ที่ทำกับแบบบันทึกผลไว้ใช้ต่อใน W3/W4
