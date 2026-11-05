@@ -11,7 +11,7 @@
 2. เปิด `index.html` ใน browser ลองกรอกว่าคืนหนังสือช้า 3 วัน ยอดต้องเป็น **16.50 THB**
    หน้านี้ใช้ทดลองเท่านั้น ไม่มีการชำระเงินจริง และไม่ต้องติดตั้ง server หรือ database
 3. เปิด `tests.html` ตรวจว่า test ผ่านครบ **18/18**
-   ถ้ามี Node 20 ขึ้นไป จะรัน `node --test tests/*.test.js` ใน terminal แทนก็ได้
+   ถ้ามี Node 20 ขึ้นไป จะรัน `npm test` ใน terminal แทนก็ได้
    ไม่ต้องรัน `npm install`
 4. เปิด Copilot Chat → New Chat → เลือก Session Target เป็น **Local**, โหมด **Agent**, model **Auto**
    ใช้ตัวเลือกเดิมตลอดแล็บ และเปิด New Chat ใหม่ตามที่แต่ละข้อระบุ
@@ -23,32 +23,32 @@
 
 ## แล็บทั้ง 7 ข้อ · 45 นาที
 
-| ข้อ | นาที | ผลลัพธ์ |
-|---|---:|---|
-| [2.1 จัดกลุ่มประโยคที่ใช้บ่อย](labs/2.1-sort-your-list.md) | 5 | แยกว่าประโยคไหนควรเก็บเป็น prompt, instructions หรือ skill |
-| [2.2 เก็บคำขอไว้เรียกใช้ซ้ำ](labs/2.2-save-the-ask.md) | 7 | สร้าง prompt file แล้วเรียกใช้กับ 2 function |
-| [2.3 เขียนกติกากลางของ repo](labs/2.3-repo-rules.md) | 8 | เขียนกติกากลางของ repo 3 ข้อ พร้อมเหตุผล |
-| [2.4 ตรวจว่า Copilot ได้รับกฎหรือยัง](labs/2.4-is-it-loaded.md) | 5 | ตรวจว่า Copilot ได้รับ instructions หรือยัง |
-| [2.5 เขียนกติกาสำหรับบางไฟล์](labs/2.5-path-scoped.md) | 7 | เขียน instructions สำหรับไฟล์ใน `tests/**` |
-| [2.6 ลองเปิด–ปิดกฎแล้วเทียบผล](labs/2.6-measure-it.md) | 11 | บันทึกผล 5 งาน แล้วเทียบ 2 งานเดิมตอนเปิดและปิดกฎ |
-| [2.7 ดูผล review เทียบกับกติกาทีม](labs/2.7-review-reads-the-rules.md) | 2 | ดูผู้สอนสาธิต review ของ PR ที่คำนวณเงินผิดกติกาทีม |
+| ข้อ                                                                    | นาที | ผลลัพธ์                                                        |
+| ---------------------------------------------------------------------- | ---: | -------------------------------------------------------------- |
+| [2.1 จัดกลุ่มประโยคที่ใช้บ่อย](labs/2.1-sort-your-list.md)             |    5 | แยกว่าประโยคไหนควรเก็บเป็น prompt, instructions หรือ skill     |
+| [2.2 เก็บคำขอไว้เรียกใช้ซ้ำ](labs/2.2-save-the-ask.md)                 |    7 | สร้าง prompt file แล้วเรียกใช้กับ 2 function                   |
+| [2.3 เขียนกติกากลางของ repo](labs/2.3-repo-rules.md)                   |    8 | เขียนกติกาเรื่องเงิน เวลา migration และการรัน test หลังแก้โค้ด |
+| [2.4 ตรวจว่า Copilot ได้รับกฎหรือยัง](labs/2.4-is-it-loaded.md) | 5 | Refactor ครั้งเดียว ดูหลักฐานการแนบกฎและการรัน test แล้ว Undo |
+| [2.5 เขียนกติกาสำหรับบางไฟล์](labs/2.5-path-scoped.md)                 |    7 | เขียน instructions สำหรับไฟล์ใน `tests/**`                     |
+| [2.6 ลองเปิด–ปิดกฎแล้วเทียบผล](labs/2.6-measure-it.md)                 |   11 | บันทึกผล 5 งาน แล้วเทียบ 2 งานเดิมตอนเปิดและปิดกฎ              |
+| [2.7 ดูผล review เทียบกับกติกาทีม](labs/2.7-review-reads-the-rules.md) |    2 | ดูผู้สอนสาธิต review ของ PR ที่คำนวณเงินผิดกติกาทีม            |
 
 ทำตามลำดับได้เลย ข้อสุดท้ายผู้สอนจะทำให้ดู
 ถ้าติดอยู่ที่ขั้นตอนไหนเกิน 2 นาที ให้ยกมือเรียกผู้สอน ไม่ต้องนั่งแก้คนเดียว
 
 ## ไฟล์ที่ใช้ในแล็บ
 
-| ไฟล์ | หน้าที่ |
-|---|---|
-| `src/loans.js` | `calculateLateFee(daysLate)`, `buildFeeReceipt(daysLate, clock)`, `canRenew()`, `countChargeableDays()` |
-| `src/money.js` | ตัวช่วยคำนวณเงิน เช่น `Money.satang(550).times(3)` ได้ 1,650 สตางค์ อ่านค่าผ่าน `.value` และแสดงเป็นบาทด้วย `.format()` |
-| `src/clock.js` | ตัวช่วยเรื่องเวลา ทั้ง `systemClock.now()` และ `fakeClock(iso).now()` คืนค่าเป็น Date |
-| `api/status.js` | function สำหรับเช็กสถานะระบบ ไม่มี HTTP server ให้รัน |
-| `db/migrations/003_create_loans.sql` | ในโจทย์ให้ถือว่า migration นี้ถูกนำไปใช้แล้ว |
-| `tests/` | test ชุดเดียวกันรันได้ทั้ง Node และ browser ชื่อ test เดิมยังไม่ใช้รูปแบบ given_when_then |
-| `docs/team.md` | กติกาทีมที่จะนำมาเขียนเป็น instructions |
-| `docs/tickets/` | โจทย์สำหรับ W3/W4 ยังไม่ต้องแก้ในสัปดาห์นี้ |
-| `labs/` | ขั้นตอนแต่ละแล็บ รายการประโยคตัวอย่าง โจทย์ทดลอง และแบบบันทึกผล |
+| ไฟล์                                 | หน้าที่                                                                                                                 |
+| ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------- |
+| `src/loans.js`                       | `calculateLateFee(daysLate)`, `buildFeeReceipt(daysLate, clock)`, `canRenew()`, `countChargeableDays()`                 |
+| `src/money.js`                       | ตัวช่วยคำนวณเงิน เช่น `Money.satang(550).times(3)` ได้ 1,650 สตางค์ อ่านค่าผ่าน `.value` และแสดงเป็นบาทด้วย `.format()` |
+| `src/clock.js`                       | ตัวช่วยเรื่องเวลา ทั้ง `systemClock.now()` และ `fakeClock(iso).now()` คืนค่าเป็น Date                                   |
+| `api/status.js`                      | function สำหรับเช็กสถานะระบบ ไม่มี HTTP server ให้รัน                                                                   |
+| `db/migrations/003_create_loans.sql` | ในโจทย์ให้ถือว่า migration นี้ถูกนำไปใช้แล้ว                                                                            |
+| `tests/`                             | test ชุดเดียวกันรันได้ทั้ง Node และ browser ชื่อ test เดิมยังไม่ใช้รูปแบบ given_when_then                               |
+| `docs/team.md`                       | กติกาทีมที่จะนำมาเขียนเป็น instructions                                                                                 |
+| `docs/tickets/`                      | โจทย์สำหรับ W3/W4 ยังไม่ต้องแก้ในสัปดาห์นี้                                                                             |
+| `labs/`                              | ขั้นตอนแต่ละแล็บ รายการประโยคตัวอย่าง โจทย์ทดลอง และแบบบันทึกผล                                                         |
 
 ตอนเริ่ม **ยังไม่มี** โฟลเดอร์ `.github/`, prompt file หรือ instructions file
 เราจะค่อยๆ สร้างในแต่ละข้อ ไม่ต้องสั่งให้ Copilot ทำทั้งแล็บในครั้งเดียว
