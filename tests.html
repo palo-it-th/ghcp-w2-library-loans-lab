@@ -21,10 +21,16 @@
 <script src="api/status.js"></script>
 <script>
   window.TestKit = {
-    Library: window.Library, results: [],
+    Library: window.Library, results: [], prefix: '',
+    describe(name, fn) {
+      const outer = this.prefix;
+      this.prefix = outer + name + ' > ';
+      try { fn(); } finally { this.prefix = outer; }
+    },
     test(name, fn) {
-      try { fn(); this.results.push({ name, passed: true }); }
-      catch (error) { this.results.push({ name, passed: false, error: error.message }); }
+      const fullName = this.prefix + name;
+      try { fn(); this.results.push({ name: fullName, passed: true }); }
+      catch (error) { this.results.push({ name: fullName, passed: false, error: error.message }); }
     },
     assert: {
       equal(actual, expected) {
@@ -46,6 +52,7 @@
     },
   };
   window.TestKit.test = window.TestKit.test.bind(window.TestKit);
+  window.TestKit.describe = window.TestKit.describe.bind(window.TestKit);
   addEventListener('error', event => {
     document.getElementById('summary').textContent = 'ERROR: ' + event.message;
     document.getElementById('summary').className = 'fail';
